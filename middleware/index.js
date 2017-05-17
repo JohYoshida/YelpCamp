@@ -21,7 +21,7 @@ middlewareObj.checkCampgroundOwnership = function checkCampgroundOwnership(req, 
   } else {
     res.redirect("back");
   }
-}
+};
 
 middlewareObj.checkCommentOwnership = function checkCommentOwnership (req, res, next){
   if(req.isAuthenticated()){
@@ -40,13 +40,14 @@ middlewareObj.checkCommentOwnership = function checkCommentOwnership (req, res, 
   } else {
     res.redirect("back");
   }
-}
+};
 
 middlewareObj.isLoggedIn = function isLoggedIn(req, res, next){
   if (req.isAuthenticated()){
     return next();
   }
+  req.flash("error", "Please login first!");
   res.redirect("/login");
-}
+};
 
 module.exports = middlewareObj;
